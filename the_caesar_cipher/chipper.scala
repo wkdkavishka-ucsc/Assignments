@@ -5,7 +5,7 @@ import util.control.Breaks._
 import scala.collection.mutable._
 
 object chipper{
-    def enc(char:Char = 'A', key:Int = 5):Char = {// encript
+    def enc(char:Char = 'A', key:Int = 5):Char = {// encrypt
         // argument handelling
         var new_key:Int = 0;
         if(key > 26){// handelling large key value
@@ -41,7 +41,7 @@ object chipper{
         }
     }
 
-    def dec(char:Char = 'F', key:Int = 5):Char = {// decript
+    def dec(char:Char = 'F', key:Int = 5):Char = {// decrypt
         // argument handelling
         var new_key:Int = 0;
         if(key > 26){// handelling large key value
