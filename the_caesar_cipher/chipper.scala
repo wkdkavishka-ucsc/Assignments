@@ -89,14 +89,16 @@ object chipper{
             var key:Int = readInt();
 
             // processing -------------
-            print("\nencrypted user input\n")
+            print("....................................\n");
+            print("encrypted \"user input\"\n--> ")
             for(x <- user_in){
                 print(enc(x,key));      name += enc(x,key);
             }
-            print("\ndecrypted user input\n")
+            print("\ndecrypted \"user input\"\n--> ")
             for(x <- name){
                 print(dec(x,key));
             }
+            print("\n....................................\n");
         }    
     }
 }
