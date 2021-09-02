@@ -5,6 +5,7 @@ import util.control.Breaks._
 import scala.collection.mutable._
 
 object chipper{
+
     def enc(char:Char = 'A', key:Int = 5):Char = {// encrypt
         // argument handelling
         var new_key:Int = 0;
@@ -80,25 +81,52 @@ object chipper{
     def main( args:Array[String] ): Unit = {
         var alph = ArrayBuffer[Char]();
         for(x <- 'A' to 'Z'){ alph += x; }// create aplhabet
-
+  
+        breakable{
         while(true){// infinite loop
-            var name = ArrayBuffer[Char]();
+            var tempstr = ArrayBuffer[Char](); // to store the encrypted string
             // user input ---------
             var user_in:String = readLine("\nuser input (string) -> ");
-            print("encrypt key value -> ");
+            print("key value -> ");
             var key:Int = readInt();
 
-            // processing -------------
-            print("....................................\n");
-            print("encrypted \"user input\"\n--> ")
-            for(x <- user_in){
-                print(enc(x,key));      name += enc(x,key);
+            breakable{
+            while(true){
+                
+                // choise ----------
+                print("\n................ choise ....................\n");
+                print("1.) encrypt\n2.) decrypt\n3.) enter new string\n4.) change key value");
+                print("\nchoise -> ");
+                var choise:Int = readInt();
+                print("....................................\n");
+                // resolving
+                if(choise == 1){// encrypt 
+                    print("encrypted \"user input\"\n--> ")
+                    for(x <- user_in){
+                    print(enc(x,key));      tempstr += enc(x,key);
+                    }
+                }
+                else if(choise == 2){// decrypt
+                    print("decrypted \"user input\"\n--> ")
+                    for(x <- user_in){
+                        print(dec(x,key));
+                    }
+                    //print("\n");
+                }
+                else if(choise == 3){
+                    break();// jump to main loop
+                }
+                else if(choise == 4){
+                    print("\ncurrent key value --> "+key);
+                    print("\nnew key value -> ");
+                    key = readInt();
+                }
+                else{
+                    print("\n\tno such option...");
+                }
             }
-            print("\ndecrypted \"user input\"\n--> ")
-            for(x <- name){
-                print(dec(x,key));
             }
-            print("\n....................................\n");
-        }    
+        }
+        }
     }
 }
